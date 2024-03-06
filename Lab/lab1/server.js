@@ -1,9 +1,16 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+let ejs = require('ejs');
+
+let people = ['geddy', 'neil', 'alex'];
+let html = ejs.render('<%= people.join(", "); %>', {people: people});
 
 app.use(express.urlencoded({ extended: true })); // Middleware để xử lý dữ liệu được gửi từ form
-
+app.set('view engine', 'ejs');
+app.get('/', (req, res)=>{
+    res.render('index', {title: 'Trang chủ',body : 'Trang chủ'}) 
+})
 
 //router
 app.get('/', (req, res, next) => {
@@ -21,7 +28,7 @@ app.get('/add-product', (req, res, next) => {
     res.send(`<form action="/product" method="POST"><input type="text"
     name = "productId" ><input type="text"
 name = "productName" > <button type="submit">Add Product</button></form > `);
-})
+});
 // Route để xử lý dữ liệu được gửi từ form thêm sản phẩm
 app.post('/product', (req, res, next) => {
     const productName = req.body.productName;
@@ -37,6 +44,62 @@ app.get('/product/:id', (req, res, next) => {
     res.send(`<p>Đây là trang sản phẩm chi tiết: ${req.params.id}</p>`);
 })
 
+//Data inventors
+const inventors = [
+    { id:1, first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
+    { id:2, first: 'Isaac', last: 'Newton', year: 1643, passed: 1727 },
+    { id:3, first: 'Galileo', last: 'Galilei', year: 1564, passed: 1642 },
+    { id:4, first: 'Marie', last: 'Curie', year: 1867, passed: 1934 },
+    { id:5, first: 'Johannes', last: 'Kepler', year: 1571, passed: 1630 },
+    { id:6, first: 'Nicolaus', last: 'Copernicus', year: 1473, passed: 1543 }
+];
+
+// Trang inventor
+app.get('/inventors', (req, res) => {
+    console.log('Đây là trang inventor');
+    let list = '<h2>Danh sách các nhà khoa học</h2>'; // Sửa lỗi đóng thẻ h2
+    inventors.forEach(element => {
+        list += `<ul>
+                    <li><a href="/inventors/${element.id}">${element.first} ${element.last}</a></li>
+                 </ul>`; // Thêm first name và sửa cách thức hiển thị
+    });
+    res.send(list); // Di chuyển res.send ra khỏi vòng lặp
+});
+//Trang xử lý chi tiết
+app.get('/inventors/:id', (req, res)=>{
+    console.log('/trang chi tiết');
+    let id = req.params.id;
+    let inventor = inventors.find(element=> element.id==id);
+    info=`<h2>Thông tin chi tiết nhà khoa học:Full name: ${inventor.first} ${inventor.last}, Year: ${inventor.year},
+Passed: ${inventor.passed}</h2>`;
+    res.send(info);
+});
+
+// Trang xử lý chi tiết xử lý trả về dạng json
+// app.get('/inventors/:id', (req, res) => {
+//     console.log('/trang chi tiết');
+//     let id = req.params.id;
+//     let inventor = inventors.find(element => element.id == id);
+
+//     if (inventor) {
+//         // Tạo đối tượng JSON từ thông tin chi tiết nhà khoa học
+//         let inventorInfo = {
+//             fullName: `${inventor.first} ${inventor.last}`,
+//             year: inventor.year,
+//             passed: inventor.passed
+//         };
+//         // Trả về dữ liệu dưới dạng JSON và thiết lập trạng thái 200 (OK)
+//         res.status(200).json(inventorInfo);
+//     } else {
+//         // Nếu không tìm thấy nhà khoa học, trả về trạng thái 404 (Not Found)
+//         res.status(404).json({ error: 'Không tìm thấy nhà khoa học' });
+//     }
+// });
+
+//Trang thêm thông tin nhà khoa học
+
 app.listen(port, () => {
     console.log(`Ứng dụng đang chạy với port: ${port}`);
 });
+
+
