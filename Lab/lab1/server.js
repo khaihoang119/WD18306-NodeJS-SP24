@@ -1,11 +1,12 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+var bodyParser = require('body-parser');
 let ejs = require('ejs');
 
 let people = ['geddy', 'neil', 'alex'];
 let html = ejs.render('<%= people.join(", "); %>', {people: people});
-
+app.use(bodyParser.urlencoded());
 app.use(express.urlencoded({ extended: true })); // Middleware để xử lý dữ liệu được gửi từ form
 app.set('view engine', 'ejs');
 app.get('/', (req, res)=>{
@@ -97,6 +98,19 @@ Passed: ${inventor.passed}</h2>`;
 // });
 
 //Trang thêm thông tin nhà khoa học
+app.get('/add-inventor', (req, res) =>{
+    res.send(`Học</h1><form action="/inventor" method="POST"><input type="text"
+    name="first" placeholder="input first name"><input type="text" name="last" placeholder="input last name"><br><input
+    type="number" name="year" placeholder="Year"><input type="number" name="passed"
+    placeholder="passed"><br><button type="submit">Add Product</button></form>`)
+});
+
+app.post('/inventor', (req, res) => {
+    let newInventor=req.body;
+    newInventor.id=inventors.length+1;
+    inventors.push(newInventor);
+    res.redirect('/inventors');
+    });
 
 app.listen(port, () => {
     console.log(`Ứng dụng đang chạy với port: ${port}`);
