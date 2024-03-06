@@ -4,14 +4,11 @@ const port = 3000;
 var bodyParser = require('body-parser');
 let ejs = require('ejs');
 
-let people = ['geddy', 'neil', 'alex'];
-let html = ejs.render('<%= people.join(", "); %>', {people: people});
+
 app.use(bodyParser.urlencoded());
 app.use(express.urlencoded({ extended: true })); // Middleware để xử lý dữ liệu được gửi từ form
 app.set('view engine', 'ejs');
-app.get('/', (req, res)=>{
-    res.render('index', {title: 'Trang chủ',body : 'Trang chủ'}) 
-})
+app.set('views', 'views/');
 
 //router
 app.get('/', (req, res, next) => {
@@ -56,24 +53,43 @@ const inventors = [
 ];
 
 // Trang inventor
-app.get('/inventors', (req, res) => {
-    console.log('Đây là trang inventor');
-    let list = '<h2>Danh sách các nhà khoa học</h2>'; // Sửa lỗi đóng thẻ h2
+// app.get('/inventors', (req, res) => {
+//     let list = '';
+//     inventors.forEach(element => {
+//         list += `
+//                     <td><a href="/inventors/${element.id}">${element.first} ${element.last}</a></td>
+//                  `; // Thêm first name và sửa cách thức hiển thị
+//     });
+   
+    
+//     res.send(list); // Di chuyển res.send ra khỏi vòng lặp
+// });
+
+app.get('/inventors', (req, res)=>{
+    let list = '';
     inventors.forEach(element => {
-        list += `<ul>
-                    <li><a href="/inventors/${element.id}">${element.first} ${element.last}</a></li>
-                 </ul>`; // Thêm first name và sửa cách thức hiển thị
+        list += `<tr>
+        <td><a class="text-decoration-none text-black" href="/inventors/${element.id}">${element.first} ${element.last}</a></td>  
+        </tr>
+                 `; // Thêm first name và sửa cách thức hiển thị
     });
-    res.send(list); // Di chuyển res.send ra khỏi vòng lặp
+    
+    res.render('index', { 
+        inventorsList: list 
+    }); // Render danh sách nhà phát minh vào index.ejs
 });
+
 //Trang xử lý chi tiết
 app.get('/inventors/:id', (req, res)=>{
-    console.log('/trang chi tiết');
+    
     let id = req.params.id;
-    let inventor = inventors.find(element=> element.id==id);
-    info=`<h2>Thông tin chi tiết nhà khoa học:Full name: ${inventor.first} ${inventor.last}, Year: ${inventor.year},
-Passed: ${inventor.passed}</h2>`;
-    res.send(info);
+    let inventor = inventors.find(element=> element.id==id); 
+    res.render('detail',{
+        firstname: inventor.first,
+        lastname: inventor.last,
+        birthYear: inventor.year,
+        death: inventor.passed
+    })
 });
 
 // Trang xử lý chi tiết xử lý trả về dạng json
@@ -99,10 +115,8 @@ Passed: ${inventor.passed}</h2>`;
 
 //Trang thêm thông tin nhà khoa học
 app.get('/add-inventor', (req, res) =>{
-    res.send(`Học</h1><form action="/inventor" method="POST"><input type="text"
-    name="first" placeholder="input first name"><input type="text" name="last" placeholder="input last name"><br><input
-    type="number" name="year" placeholder="Year"><input type="number" name="passed"
-    placeholder="passed"><br><button type="submit">Add Product</button></form>`)
+    res.render("add", {});
+   
 });
 
 app.post('/inventor', (req, res) => {
