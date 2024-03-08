@@ -8,13 +8,14 @@ app.use(express.static('assets'));
 
 //router
 app.get ('/', (req, res)=>{
-    res.send('<h2>Đây là trang chủ</h2>')
+   
+    res.render('index',{
+
+    });
 });
 
 
-app.get ('/', (req, res)=>{
-    res.send('<h2>Đây là trang chủ</h2>')
-});
+
 
 app.listen(port, () =>{
     console.log(`Ứng dụng đang chạy với port: ${port}`);
