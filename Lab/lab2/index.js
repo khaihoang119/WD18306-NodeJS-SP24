@@ -4,14 +4,16 @@ const port = 3000;
 let ejs = require('ejs');
 app.set('view engine', 'ejs');
 app.set('views', 'views/');
-app.use(express.static('assets'));
+app.use(express.urlencoded({ extended: true })); // Middleware để xử lý dữ liệu được gửi từ form
+
+// Khai báo static file
+app.use(express.static('assets' ));
 
 //router
 app.get ('/', (req, res)=>{
    
     res.render('index',{
-        title: 'Trang chủ'
-
+        
     });
 });
 
