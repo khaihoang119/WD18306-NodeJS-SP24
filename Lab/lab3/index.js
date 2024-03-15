@@ -31,7 +31,7 @@ app.post('/add-product', upload.single('productImage'), (req, res) => {
     let nameImage = file.filename;
     //Thêm vào mảng json 1 cuối sách mới
     listProduct.push({
-        id:1,
+        id: 1,
         title: title,
         price: price,
         description: description,
@@ -88,39 +88,64 @@ app.get('/', (req, res) => {
 });
 
 //dữ liệu cho sản phẩm
-var listProduct = [
-    { id: 1, title: 'Áo khoác kaki', price: 289000, description: "áo khoác làm từ vải kaki chất liệu thoáng mát", image: "product-2.jpg" },
-    { id: 2, title: 'Giày', price: 189000, description: "áo khoác làm từ vải kaki chất liệu thoáng mát", image: "product-1.jpg" },
-    { id: 3, title: 'Giày canvas', price: 200000, description: "áo khoác làm từ vải kaki chất liệu thoáng mát", image: "product-3.jpg" },
-    { id: 4, title: 'Áo hoddies', price: 190000, description: "áo khoác làm từ vải kaki chất liệu thoáng mát", image: "product-4.jpg" },
-    { id: 5, title: 'Áo thun ', price: 100000, description: "áo khoác làm từ vải kaki chất liệu thoáng mát", image: "product-5.jpg" },
-    { id: 6, title: 'Khăn tắm', price: 90000, description: "áo khoác làm từ vải kaki chất liệu thoáng mát", image: "product-6.jpg" },
-]
+// var listProduct = [
+//     { id: 1, title: 'Áo khoác kaki', price: 289000, description: "áo khoác làm từ vải kaki chất liệu thoáng mát", image: "product-2.jpg" },
+//     { id: 2, title: 'Giày', price: 189000, description: "áo khoác làm từ vải kaki chất liệu thoáng mát", image: "product-1.jpg" },
+//     { id: 3, title: 'Giày canvas', price: 200000, description: "áo khoác làm từ vải kaki chất liệu thoáng mát", image: "product-3.jpg" },
+//     { id: 4, title: 'Áo hoddies', price: 190000, description: "áo khoác làm từ vải kaki chất liệu thoáng mát", image: "product-4.jpg" },
+//     { id: 5, title: 'Áo thun ', price: 100000, description: "áo khoác làm từ vải kaki chất liệu thoáng mát", image: "product-5.jpg" },
+//     { id: 6, title: 'Khăn tắm', price: 90000, description: "áo khoác làm từ vải kaki chất liệu thoáng mát", image: "product-6.jpg" },
+// ]
 app.get('/products', (req, res) => {
-    connection.query('SELECT * FORM products', function(error, result, fields){
-        if(error) throw error;
-            console.log(error);
-            // res.send(console.log(result))
-            res.render('products', {
-                products: result
-            });
+    let id = req.params.id;
+    connection.query('SELECT * FROM products', function (error, result, fields) {
+        if (error) throw error;
+        console.log(error);
+        // res.send(console.log(result))
+        res.render('products', {
+            products: result
+        });
     })
+    
     // res.render('products', {
     //     products: listProduct
     // });
 });
-// app.get('/product:id',(req, res)=>{
+// app.get('/product-detail', (req, res) => {
 //     let id = req.params.id;
-//     connection.query(`SELECT * FORM products WHERE id=${id}`, function(error, result, fileds){
-//         if(error) throw error;
+//     connection.query('SELECT * FROM products', function (error, result, fields) {
+//         if (error) throw error;
 //         console.log(error);
-//         res.send(result[0]);
-//         // res.render('product/detail',{
-//         //     data: result[0]
-//         // })
-//     });
+//         // res.send(console.log(result))
+//         res.render('product-detail', {
+//             products: result
+//         });
+//     })
+    
+//     // res.render('products', {
+//     //     products: listProduct
+//     // });
 // });
+app.get('/product-detail/:id', (req, res) => {
+    const productId = 1;
 
+    // Truy vấn cơ sở dữ liệu để lấy thông tin chi tiết của sản phẩm với id tương ứng
+    connection.query(`SELECT * FROM products WHERE productID=${productId}`, (error, results, fields) => {
+        if (error) {
+            throw error;
+        }
+        
+        if (results.length > 0) {
+            // Nếu sản phẩm được tìm thấy, trả về thông tin chi tiết của sản phẩm
+            res.render('product-detail', {
+                product: results[0] // Đây là dữ liệu chi tiết của sản phẩm đầu tiên trong kết quả truy vấn
+            });
+        } else {
+            // Nếu không tìm thấy sản phẩm, trả về trang lỗi hoặc thông báo không tìm thấy sản phẩm
+            res.status(404).send('Sản phẩm không tồn tại');
+        }
+    });
+});
 app.get('/add-product', (req, res) => {
     res.render('add-product');
 });
