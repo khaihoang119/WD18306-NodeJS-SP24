@@ -22,24 +22,7 @@ var storage = multer.diskStorage({
     }
 });
 var upload = multer({ storage: storage });
-app.post('/add-product', upload.single('productImage'), (req, res) => {
-    //lấy dữ liệu từ form sau khi upload ảnh
-    const file = req.file
-    let title = req.body.title;
-    let price = req.body.price;
-    let description = req.body.description;
-    let nameImage = file.filename;
-    //Thêm vào mảng json 1 cuối sách mới
-    listProduct.push({
-        id: 1,
-        title: title,
-        price: price,
-        description: description,
-        image: nameImage,
-    })
-    //chuyển về trang sản phẩm
-    res.redirect('/products');
-});
+
 //khai bao sử dụng template ejs
 app.set('view engine', 'ejs');
 app.set('views', 'views/');
@@ -87,15 +70,6 @@ app.get('/', (req, res) => {
     });
 });
 
-//dữ liệu cho sản phẩm
-// var listProduct = [
-//     { id: 1, title: 'Áo khoác kaki', price: 289000, description: "áo khoác làm từ vải kaki chất liệu thoáng mát", image: "product-2.jpg" },
-//     { id: 2, title: 'Giày', price: 189000, description: "áo khoác làm từ vải kaki chất liệu thoáng mát", image: "product-1.jpg" },
-//     { id: 3, title: 'Giày canvas', price: 200000, description: "áo khoác làm từ vải kaki chất liệu thoáng mát", image: "product-3.jpg" },
-//     { id: 4, title: 'Áo hoddies', price: 190000, description: "áo khoác làm từ vải kaki chất liệu thoáng mát", image: "product-4.jpg" },
-//     { id: 5, title: 'Áo thun ', price: 100000, description: "áo khoác làm từ vải kaki chất liệu thoáng mát", image: "product-5.jpg" },
-//     { id: 6, title: 'Khăn tắm', price: 90000, description: "áo khoác làm từ vải kaki chất liệu thoáng mát", image: "product-6.jpg" },
-// ]
 app.get('/products', (req, res) => {
     let id = req.params.id;
     connection.query('SELECT * FROM products', function (error, result, fields) {
@@ -106,26 +80,9 @@ app.get('/products', (req, res) => {
             products: result
         });
     })
-    
-    // res.render('products', {
-    //     products: listProduct
-    // });
+
 });
-// app.get('/product-detail', (req, res) => {
-//     let id = req.params.id;
-//     connection.query('SELECT * FROM products', function (error, result, fields) {
-//         if (error) throw error;
-//         console.log(error);
-//         // res.send(console.log(result))
-//         res.render('product-detail', {
-//             products: result
-//         });
-//     })
-    
-//     // res.render('products', {
-//     //     products: listProduct
-//     // });
-// });
+
 app.get('/product-detail/:id', (req, res) => {
     const productId = 1;
 
@@ -134,7 +91,7 @@ app.get('/product-detail/:id', (req, res) => {
         if (error) {
             throw error;
         }
-        
+
         if (results.length > 0) {
             // Nếu sản phẩm được tìm thấy, trả về thông tin chi tiết của sản phẩm
             res.render('product-detail', {
@@ -146,9 +103,92 @@ app.get('/product-detail/:id', (req, res) => {
         }
     });
 });
+
+
+
+
 app.get('/add-product', (req, res) => {
     res.render('add-product');
 });
+
+app.post('/add-product', (req, res) => {
+    const product = {
+        productName: req.body.productName,
+        productPrice: req.body.productPrice,
+        productImg: req.body.productImage,
+        productDes: req.body.productDescription
+    };
+
+    connection.query('INSERT INTO products SET ?', product, function (error, result) {
+        if (error) {
+            throw error;
+        }
+        console.log("1 product inserted");
+        res.redirect("/products");
+    });
+});
+
+app.get('/product-list', (req, res)=>{
+    let id = req.params.id;
+    connection.query('SELECT * FROM products', function (error, result, fields) {
+        if (error) throw error;
+        console.log(error);
+        // res.send(console.log(result))
+        res.render('product-list', {
+            products: result
+        });
+    })
+});
+
+app.delete('/delete-product/:productId', (req, res) => {
+    const productId = req.params.productId;
+    connection.query('DELETE FROM products WHERE productId = ?', productId, function (error, result) {
+        if (error) {
+            console.error('Lỗi khi xóa sản phẩm:', error);
+            res.status(500).send('Lỗi khi xóa sản phẩm');
+        } else {
+            console.log('Sản phẩm đã được xóa thành công');
+            res.sendStatus(200);
+        }
+    });
+});
+
+app.get('/product-edit/:productId', (req, res) => {
+    const productId = req.params.productId;
+    
+    // Truy vấn sản phẩm từ cơ sở dữ liệu dựa trên productId
+    connection.query('SELECT * FROM products WHERE productId = ?', productId, (error, results) => {
+        if (error) {
+            console.error('Lỗi khi truy vấn sản phẩm:', error);
+            res.status(500).send('Lỗi khi truy vấn sản phẩm');
+        } else {
+            // Nếu không tìm thấy sản phẩm, hiển thị lỗi hoặc thông báo không tìm thấy sản phẩm
+            if (results.length === 0) {
+                res.status(404).send('Không tìm thấy sản phẩm');
+            } else {
+                // Nếu tìm thấy sản phẩm, render trang chỉnh sửa sản phẩm và truyền dữ liệu của sản phẩm cần chỉnh sửa vào template
+                res.render('product-edit', { product: results[0] });
+            }
+        }
+    })
+});
+
+app.post('/product-edit/:productId', (req, res) => {
+    const productId = req.params.productId;
+    const { productName, productPrice, productDescription, productImage } = req.body;
+
+    // Truy vấn để cập nhật thông tin sản phẩm vào cơ sở dữ liệu
+    connection.query('UPDATE products SET productName = ?, productPrice = ?, productDes = ?, productImg = ? WHERE productId = ?', [productName, productPrice, productDescription, productImage, productId], (error, result) => {
+        if (error) {
+            console.error('Lỗi khi cập nhật sản phẩm:', error);
+            res.status(500).send('Lỗi khi cập nhật sản phẩm');
+        } else {
+            console.log('Sản phẩm đã được cập nhật thành công');
+            res.redirect('/product-list'); // Chuyển hướng đến trang danh sách sản phẩm sau khi cập nhật thành công
+        }
+    });
+});
+
 
 
 app.listen(port, () => {

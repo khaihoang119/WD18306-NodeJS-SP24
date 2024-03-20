@@ -25,22 +25,22 @@
                 
                 <div class="col-lg-9">
                     <h2>Trang thêm sản phẩm</h2>
-                    <form action="/add-product" method="post" enctype="multipart/form-data">
+                    <form action="/add-product" method="POST" >
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Tên sản phẩm</label>
-                            <input type="text" class="form-control" name="title" id="" >
+                            <input type="text" class="form-control" name="productName" id="productName" >
                           </div>
                           <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Giá</label>
-                            <input type="number" class="form-control" name="price" id="">
+                            <input type="number" class="form-control" name="productPrice" id="productPrice">
                           </div>
                           <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Mô tả sản phẩm</label>
-                            <input type="text" class="form-control" name="description" id="">
+                            <input type="text" class="form-control" name="productDescription" id="productDescription">
                           </div>
                           <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Hình ảnh sản phẩm</label>
-                            <input type="file" class="form-control" name="productImage" id="">
+                            <input type="text" class="form-control" name="productImage" id="productImage">
                           </div>
                           <button type="submit" class="btn btn-primary">Thêm sản phẩm</button>
                     </form>
