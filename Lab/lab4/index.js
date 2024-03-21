@@ -3,18 +3,10 @@ const app = express();
 const port = 3000;
 var bodyParser = require('body-parser');
 
-//Kết nối db mysql
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-    host: ' localhost',
-    user: 'root',
-    password: 'mysql',
-    database: 'nodejs'
-});
 
 //khai báo sử dụng template ejs
 app.set('view engine', 'ejs');
-app.set('view', 'view/');
+app.set('views', 'views/');
 app.use(bodyParser.urlencoded());
 app.use(express.urlencoded({ extended: true}));
 
@@ -22,13 +14,21 @@ app.use(express.urlencoded({ extended: true}));
 app.use(express.static('assets'));
 
 //router
-app.get('/', (req, res)=>{
-    connection.query('SELECT * FROM products', function(error, result, fields){
-        if(error) throw error;
-        console.log(error);
-        res.render('client/index',{
-            title: 'Trang chủ',
-            product: result
-        });
-    });
+// app.get('/', (req, res)=>{
+//     connection.query('SELECT * FROM products', function(error, result, fields){
+//         if(error) throw error;
+//         console.log(error);
+//         res.render('client/index',{
+//             title: 'Trang chủ',
+//             product: result
+//         });
+//     });
+// });
+// const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./models/product');
+// const errorController = require('./controllers/error');
+// app.use('/admin', adminRoutes);
+app.use(shopRoutes);
+app.listen(port, () => {
+    console.log(`Ứng dụng đang chạy với port: ${port}`);
 });
