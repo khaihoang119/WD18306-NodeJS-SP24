@@ -21,4 +21,18 @@ module.exports = class Product {
             });
         });
     }
+
+    //add product to db
+    static async saveProduct(product){
+        return new Promise((resolve, reject) =>{
+            connection.query('INSERT INTO products SET ?',product, function(err, data){
+                if(err){
+                    reject(err);
+                } else{
+                    resolve(data);
+                }
+                // res.redirect("/product");
+            });
+        });
+    }
 }

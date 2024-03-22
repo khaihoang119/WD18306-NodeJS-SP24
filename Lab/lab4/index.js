@@ -26,9 +26,14 @@ app.use(express.static('assets'));
 // });
 // const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routers/client');
+app.use(shopRoutes);
+
+const adminRouters = require('./routers/admin');
+app.use('/admin',adminRouters);
+ 
 // const errorController = require('./controllers/error');
 // app.use('/admin', adminRoutes);
-app.use(shopRoutes);
+
 app.listen(port, () => {
     console.log(`Ứng dụng đang chạy với port: ${port}`);
 });

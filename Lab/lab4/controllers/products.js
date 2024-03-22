@@ -1,34 +1,61 @@
-// const product = [];
-// exports.getaddProduct = (req, res, next) =>{
-//     res.render('add-product',{
-//         title: 'Add Product' ,
-//         path: '/admin/add-product', 
-//         activeAddProduct: true
-//     });
-// };
-// exports.postAddProduct = (req, res, next) => {
-//     products.push({ title: req.body.title });
-//     res.redirect('/');
-//     };
-//     exports.getProducts = (req, res, next) => {
-//     res.render('client', {
-//     prods: products,
-//     pageTitle: 'Shop',
-//     path: '/',
-//     hasProducts: products.length > 0,
-//     activeShop: true,
-//     });
-//     };
 
 const Product = require('../models/product');
 // const newProduct = new Product;
-exports.getProducts = async (req, res, next) => {
+exports.getProductsMain = async (req, res, next) => {
     var products = await Product.fetchAll();
     res.render('client/index', {
         prods: products,
-        pageTitle: 'Shop',
+        pageTitle: 'Trang chủ',
         path: '/',
         activeShop: true,
     });
     // console.log(products);
-}
+};
+exports.getProducts = async (req, res, next) => {
+    var products = await Product.fetchAll();
+    res.render('client/products', {
+        prods: products,
+        pageTitle: 'Sản phẩm',
+        path: '/',
+        activeShop: true
+    });
+};
+exports.getProductsAdmin = async (req, res, next) => {
+    var products = await Product.fetchAll();
+    res.render('admin/list-products', {
+        prods: products,
+        pageTitle: 'Sản phẩm',
+        path: '/',
+        activeShop: true
+    });
+};
+//add products
+// const product = [];
+exports.getAddProduct = (req, res, next) => {
+    res.render('admin/add-product', {
+        pageTitle: 'Thêm Sản Phẩm',
+        path: '/',
+        activeAddProduct: true
+    });
+};
+exports.postAddProduct = async (req, res, next) => {
+    // let productName = req.body.productName;
+    // let productPrice = req.body.productPrice;
+    // let productDes = req.body.productDes;
+    // let productImg = req.body.productImage;
+    let product = {
+        productName: req.body.productName,
+        productPrice: req.body.productPrice,
+        productImg: req.body.productImage,
+        productDes: req.body.productDes
+    };
+    let result = await Product.saveProduct(product);
+    if (result) {
+        res.render('admin/list-products',{
+
+        });
+    } else {
+        res.send('co loi xay ra');
+    }
+};
+
