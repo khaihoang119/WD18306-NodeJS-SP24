@@ -25,7 +25,7 @@ app.use(express.static('assets'));
 //     });
 // });
 // const adminRoutes = require('./routes/admin');
-const shopRoutes = require('./models/product');
+const shopRoutes = require('./routers/client');
 // const errorController = require('./controllers/error');
 // app.use('/admin', adminRoutes);
 app.use(shopRoutes);
