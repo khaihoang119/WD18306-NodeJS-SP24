@@ -21,10 +21,10 @@
 //     };
 
 const Product = require('../models/product');
-const newProduct = new Product;
+// const newProduct = new Product;
 exports.getProducts = async (req, res, next) => {
-    var products = await newProduct.fetchAll();
-    res.render('client', {
+    var products = await Product.fetchAll();
+    res.render('client/index', {
         prods: products,
         pageTitle: 'Shop',
         path: '/',
