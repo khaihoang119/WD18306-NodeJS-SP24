@@ -33,6 +33,9 @@ app.use('/admin',adminRouters);
  
 // const errorController = require('./controllers/error');
 // app.use('/admin', adminRoutes);
+const apiRoutes = require('./routers/api');
+app.use('/api', apiRoutes);
+
 
 app.listen(port, () => {
     console.log(`Ứng dụng đang chạy với port: ${port}`);
