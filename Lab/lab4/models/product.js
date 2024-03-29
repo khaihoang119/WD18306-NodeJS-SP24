@@ -35,4 +35,17 @@ module.exports = class Product {
             });
         });
     }
+
+    // //xóa sản phẩm
+    // static async deleteProduct(productId){
+    //     return new Promise((resolve, reject) =>{
+    //         connection.query('DELETE FROM products WHERE productId = ?',productId, function(err, data){
+    //             if(err){
+    //                 reject(err);
+    //             } else{
+    //                 resolve(data);
+    //             }
+    //         });
+    //     });
+    // }
 }

@@ -94,18 +94,35 @@
 
 							<tbody>
 								<% for (let product of prods){ %>
-								<tr>
-									<th scope="row"><%= product.productId %></th>
-									<td><%= product.productName %></td>
-									<td><%= product.productImg %></td>
-									<td><%= product.productPrice %> vnđ</td>
-									<td><span class="badge badge-primary">Áo </span></td>
-								</tr>
-								<% } %>
-								
+									<tr>
+										<th scope="row">
+											<%= product.productId %>
+										</th>
+										<td>
+											<%= product.productName %>
+										</td>
+										<td>
+											<%= product.productImg %>
+										</td>
+										<td>
+											<%= product.productPrice %> vnđ
+										</td>
+										<td>
+											<%= product.categoryID %>
+										</td>
+
+										<td><button class="btn btn-primary"
+												onclick="deleteProduct('<%= product.productId %>')">Xóa</button></td>
+
+
+										<td><button class="btn btn-primary deleteBtn" onclick="editProduct('<%= product.productId %>')">Sửa</button></td>
+										<!-- <td><span class="badge badge-primary">Áo </span></td> -->
+									</tr>
+									<% } %>
+
 							</tbody>
 						</table>
-						
+
 					</div>
 					<!-- basic table  End -->
 
@@ -114,6 +131,30 @@
 				<%- include('./layouts/footer.ejs') %>
 			</div>
 		</div>
+		<script>
+			function editProduct(productId) {
+        window.location.href = `/edit-product/${productId}`; // Chuyển hướng đến trang chỉnh sửa sản phẩm
+    }
+			function deleteProduct(productId) {
+				if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này?")) {
+					fetch(`/delete-product/${productId}`, {
+						method: 'DELETE'
+					})
+						.then(response => {
+							if (response.ok) {
+								window.location.reload(); // Reload trang sau khi xóa thành công
+							} else {
+								throw new Error('Xóa sản phẩm không thành công');
+							}
+						})
+						.catch(error => {
+							console.error('Lỗi:', error);
+						});
+				}
+			}
+
+
+		</script>
 		<!-- js -->
 		<script src="vendors/scripts/core.js"></script>
 		<script src="vendors/scripts/script.min.js"></script>

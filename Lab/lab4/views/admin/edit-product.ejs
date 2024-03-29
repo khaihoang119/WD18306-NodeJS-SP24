@@ -18,9 +18,9 @@
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
 		rel="stylesheet">
 	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="vendors/styles/core.css">
-	<link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css">
-	<link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
+	<link rel="stylesheet" type="text/css" href="../admin/vendors/styles/core.css">
+	<link rel="stylesheet" type="text/css" href="../admin/vendors/styles/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="../admin/vendors/styles/style.css">
 
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
@@ -70,34 +70,34 @@
 					<div class="pd-20 card-box mb-30">
 						<div class="clearfix">
 							<div class="pull-left">
-								<h4 class="text-blue h4">Thêm sản phẩm mới</h4>
+								<h4 class="text-blue h4">Sửa sản phẩm</h4>
 							</div>
 
 						</div>
-						<form action="add-product" method="POST">
+						<form action="/edit-product/<%= product.productId %>" method="POST">
 							<div class="form-group row">
 								<label class="col-sm-12 col-md-2 col-form-label">Tên sản phẩm</label>
 								<div class="col-sm-12 col-md-10">
 									<input class="form-control" type="text" placeholder="Johnny Brown"
-										name="productName">
+										name="productName" value="<%= product.productName %>">
 								</div>
 							</div>
 							<div class="form-group row">
 								<label class="col-sm-12 col-md-2 col-form-label">Giá sản phẩm</label>
 								<div class="col-sm-12 col-md-10">
-									<input class="form-control" type="number" placeholder="vnđ" name="productPrice">
+									<input class="form-control" type="number" placeholder="vnđ" name="productPrice"  value="<%= product.productPrice %>">
 								</div>
 							</div>
 							<div class="form-group row">
 								<label class="col-sm-12 col-md-2 col-form-label">ảnh sản phẩm</label>
 								<div class="col-sm-12 col-md-10">
-									<input class="form-control" type="text" placeholder="product-1.jpg"
+									<input class="form-control" value="<%= product.productImg %>" type="text" placeholder="product-1.jpg"
 										name="productImage">
 								</div>
 							</div>
 							<div class="form-group">
 								<label>Chi tiết sản phẩm</label>
-								<textarea class="form-control" name="productDes"></textarea>
+								<textarea class="form-control" value="<%= product.productDes %>" name="productDes" ></textarea>
 							</div>
 							<div class="form-group">	
 								<div class="mb-3">
@@ -112,7 +112,7 @@
 
 							</div>
 							<div class="form-group">
-								<button type="submit" class="btn btn-primary">Thêm Mới</button>
+								<button type="submit" class="btn btn-primary">Sửa</button>
 							</div>
 						</form>
 
@@ -126,10 +126,10 @@
 			</div>
 		</div>
 		<!-- js -->
-		<script src="vendors/scripts/core.js"></script>
-		<script src="vendors/scripts/script.min.js"></script>
-		<script src="vendors/scripts/process.js"></script>
-		<script src="vendors/scripts/layout-settings.js"></script>
+		<script src="../admin/vendors/scripts/core.js"></script>
+		<script src="../admin/vendors/scripts/script.min.js"></script>
+		<script src="../admin/vendors/scripts/process.js"></script>
+		<script src="../admin/vendors/scripts/layout-settings.js"></script>
 </body>
 
 </html>

@@ -36,8 +36,8 @@
 
 <body>
 
-
 	<%- include('./layouts/header.ejs') %>
+
 		<div class="mobile-menu-overlay"></div>
 
 		<div class="main-container">
@@ -47,13 +47,19 @@
 						<div class="row">
 							<div class="col-md-6 col-sm-12">
 								<div class="title">
-									<h4>Thêm sản phẩm</h4>
+									<h4>Danh sách sản phẩm </h4>
 								</div>
-
+								<nav aria-label="breadcrumb" role="navigation">
+									<ol class="breadcrumb">
+										<li class="breadcrumb-item"><a href="/admin">Trang Chủ</a></li>
+										<li class="breadcrumb-item active" aria-current="page">Danh sách tài khoản người
+											dùng</li>
+									</ol>
+								</nav>
 							</div>
 							<div class="col-md-6 col-sm-12 text-right">
 								<div class="dropdown">
-									<a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+									<a class="btn btn-primary dropdown-toggle" href="#" role="button"
 										data-toggle="dropdown">
 										Tháng 3
 									</a>
@@ -66,63 +72,41 @@
 							</div>
 						</div>
 					</div>
-					<!-- Default Basic Forms Start -->
+					<!-- basic table  Start -->
 					<div class="pd-20 card-box mb-30">
-						<div class="clearfix">
+						<div class="clearfix mb-20">
 							<div class="pull-left">
-								<h4 class="text-blue h4">Thêm sản phẩm mới</h4>
+								<h4 class="text-blue h4"></h4>
+								<p><code>Tất cả sản phẩm</code></p>
 							</div>
 
 						</div>
-						<form action="add-product" method="POST">
-							<div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label">Tên sản phẩm</label>
-								<div class="col-sm-12 col-md-10">
-									<input class="form-control" type="text" placeholder="Johnny Brown"
-										name="productName">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label">Giá sản phẩm</label>
-								<div class="col-sm-12 col-md-10">
-									<input class="form-control" type="number" placeholder="vnđ" name="productPrice">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label">ảnh sản phẩm</label>
-								<div class="col-sm-12 col-md-10">
-									<input class="form-control" type="text" placeholder="product-1.jpg"
-										name="productImage">
-								</div>
-							</div>
-							<div class="form-group">
-								<label>Chi tiết sản phẩm</label>
-								<textarea class="form-control" name="productDes"></textarea>
-							</div>
-							<div class="form-group">	
-								<div class="mb-3">
-									<label for="" class="form-label">Danh mục sản phẩm</label>
-									<select class="form-select form-select-lg" name="productCategory" id="">
-										<option selected value="0" disabled >Không có</option>
-										<option value="1" >Áo</option>
-										<option value="2">Quần</option>
-										<option value="3">Phụ kiện</option>
-									</select>
-								</div>
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Tên danh mục</th>
+								</tr>
+							</thead>
 
-							</div>
-							<div class="form-group">
-								<button type="submit" class="btn btn-primary">Thêm Mới</button>
-							</div>
-						</form>
-
+							<tbody>
+								<% for (let category of cate){ %>
+								<tr>
+									<th scope="row"><%= category.categoryId %></th>
+									<td><%= category.categoryName %></td>
+									
+								</tr>
+								<% } %>
+								
+							</tbody>
+						</table>
+						
 					</div>
-					<!-- Default Basic Forms End -->
+					<!-- basic table  End -->
 
 				</div>
 
 				<%- include('./layouts/footer.ejs') %>
-
 			</div>
 		</div>
 		<!-- js -->
