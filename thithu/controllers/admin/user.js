@@ -6,7 +6,6 @@ exports.list = async(req,res, next)=>{
         res.render('user',{
            user: data.data 
         })
-    }
-    )
+    })
     .catch(error => console.error('Error', error));
 };

@@ -28,13 +28,13 @@ app.use(express.static('assets'));
 const shopRoutes = require('./routers/client');
 app.use(shopRoutes);
 
-const adminRouters = require('./routers/admin');
-app.use('/admin',adminRouters);
+// const adminRouters = require('./routers/admin');
+// app.use('/admin',adminRouters);
  
-// const errorController = require('./controllers/error');
-// app.use('/admin', adminRoutes);
-const apiRoutes = require('./routers/api');
-app.use('/api', apiRoutes);
+// // const errorController = require('./controllers/error');
+// // app.use('/admin', adminRoutes);
+// const apiRoutes = require('./routers/api');
+// app.use('/api', apiRoutes);
 
 
 app.listen(port, () => {
