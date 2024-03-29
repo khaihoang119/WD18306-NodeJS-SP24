@@ -1,18 +1,18 @@
 var sequelize = require('./database');
+const { Sequelize, DataTypes, Model } = require('sequelize');
 
-module.exports = class Product{
-    constructor(){};
-    
-    static async getProducts(){
-        const Product = sequelize.define("products", {
-            productName: DataTypes.TEXT,
-            productPrice: DataTypes.INTEGER,
-            productDes: DataTypes.TEXT
-          });
-          
-          (async () => {
-            await sequelize.sync({ force: true });
-            // Code here
-          })();
-    }
-}
+// module.exports = class Product extends Model {}
+
+// exports.getProduct = sequelize.define("products", {
+//   productName: {
+//     type: DataTypes.STRING,
+//     allowNull: false
+//   },
+//   productPrice: {
+//     type: DataTypes.NUMBER,
+//     allowNull: false
+//   },
+//   productDes: {
+//     type: DataTypes.STRING,
+//   }
+// });

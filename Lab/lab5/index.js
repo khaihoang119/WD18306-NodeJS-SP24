@@ -8,10 +8,12 @@ var bodyParser = require('body-parser');
 app.set('view engine', 'ejs');
 app.set('views', 'views/');
 app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true}));
 
 //khai báo static file
 app.use(express.static('assets'));
+
 
 //router
 // app.get('/', (req, res)=>{
@@ -27,7 +29,8 @@ app.use(express.static('assets'));
 // const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routers/client');
 app.use(shopRoutes);
-
+const connectDB = require('./models/database');
+connectDB();
 // const adminRouters = require('./routers/admin');
 // app.use('/admin',adminRouters);
  

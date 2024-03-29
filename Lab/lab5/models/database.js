@@ -14,8 +14,19 @@
 
 
 const { Sequelize } = require('sequelize');
+
 const sequelize = new Sequelize('nodejs', 'root', 'mysql', {
     host: 'localhost',
     dialect: 'mysql'
   });
-module.exports = sequelize;
+  
+let connectDB = async() =>{
+  try{
+    await sequelize.authenticate();
+    console.log('Kết nối thành công.');
+  }catch(error){
+    console.error('Unable to connect to the database: ', error);
+  }
+}
+
+module.exports = connectDB;
