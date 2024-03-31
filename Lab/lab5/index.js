@@ -13,31 +13,14 @@ app.use(express.urlencoded({ extended: true}));
 
 //khai báo static file
 app.use(express.static('assets'));
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-
-//router
-// app.get('/', (req, res)=>{
-//     connection.query('SELECT * FROM products', function(error, result, fields){
-//         if(error) throw error;
-//         console.log(error);
-//         res.render('client/index',{
-//             title: 'Trang chủ',
-//             product: result
-//         });
-//     });
-// });
-// const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routers/client');
 app.use(shopRoutes);
-const connectDB = require('./models/database');
-connectDB();
-// const adminRouters = require('./routers/admin');
-// app.use('/admin',adminRouters);
- 
-// // const errorController = require('./controllers/error');
-// // app.use('/admin', adminRoutes);
-// const apiRoutes = require('./routers/api');
-// app.use('/api', apiRoutes);
+
+const apiRoutes = require('./routers/api');
+app.use(apiRoutes);
 
 
 app.listen(port, () => {

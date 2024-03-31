@@ -1,18 +1,19 @@
-var sequelize = require('./database');
-const { Sequelize, DataTypes, Model } = require('sequelize');
+var connection = require('./database');
 
-// module.exports = class Product extends Model {}
+module.exports = class Product{
+    constructor(){}
 
-// exports.getProduct = sequelize.define("products", {
-//   productName: {
-//     type: DataTypes.STRING,
-//     allowNull: false
-//   },
-//   productPrice: {
-//     type: DataTypes.NUMBER,
-//     allowNull: false
-//   },
-//   productDes: {
-//     type: DataTypes.STRING,
-//   }
-// });
+    //hiển thị sản phẩm
+    static fetchAll() {
+        return new Promise((resolve, reject) => {
+            let sql = 'SELECT * FROM products';
+            connection.query(sql, function (err, data) {
+                if (err) {
+                    reject(err);
+                }else{
+                    resolve(data)
+                }
+            });
+        });
+    }
+}

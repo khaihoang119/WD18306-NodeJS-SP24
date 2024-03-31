@@ -4,10 +4,10 @@ var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'mysql',
-    database: 'thithu'
+    database: 'nodejs'
 });
 connection.connect(function(err){
     if(err) throw err;
-    console.log('Database is connected');
+    console.log('Database đã được kết nối');
 });
 module.exports = connection;

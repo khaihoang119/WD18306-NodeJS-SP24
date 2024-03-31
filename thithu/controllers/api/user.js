@@ -10,9 +10,10 @@ const user = [
         status: 1
     }
 ]
-exports.getUser = (res, req, next) =>{
+var connection = require('../../models/database')
+exports.getUser = (req, res, next) =>{
     res.status(200).json({
         // users: [{title: 'user', userName: 'admin'}]
-        data: user
+        data: connection.data
     })
 };

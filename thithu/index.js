@@ -17,6 +17,9 @@ app.use(express.static('assets'));
 const userRouter = require('./routers/user')
 app.use('/', userRouter);
 
+const apiRoutes = require('./routers/api')
+app.use('/',  apiRoutes)
+
 app.listen(port, () => {
     console.log(`Ứng dụng đang chạy với port: ${port}`);
 });
