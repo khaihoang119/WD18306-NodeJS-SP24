@@ -2,31 +2,13 @@
 const Product = require('../../models/product');
 let API_URL = 'http://localhost:3000/';
 
-exports.getProductAPi = (req, res, next) => {
-    Product.fetchAll()
-        .then(products => {
-            res.send(products).json();
-        })
-}
-
-exports.getProductsClient = (req, res, next) => {
-    fetch(API_URL + 'products')
+exports.list = (req, res, next) => {
+    fetch(API_URL + 'api/products')
         .then(response => response.json())
-        .then(products => {
+        .then(data => {
             res.render('./client/products', {
-                products: products,   
+                products: data.data,   
             })
         })
-        .catch(error => {
-            console.error('Error fetching products:', error);
-            res.status(500).send('Error fetching products');
-        });
+        .catch(error => console.error('Error:', error));
 };
-exports.productsClient = (req, res, next) =>{
-    res.render('./client/index',{
-        pageTitle: 'client',
-        path:'/',
-        activeClient: true,
-       
-    });
-}

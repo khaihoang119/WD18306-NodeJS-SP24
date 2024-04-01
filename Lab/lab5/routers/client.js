@@ -2,7 +2,6 @@ const express = require('express');
 const productsController = require('../controllers/client/products');
 const router = express.Router();
 // /client/get-product => GET
-router.get('/ApiProduct', productsController.getProductAPi);
 
 router.get('/', productsController.productsClient);
 router.get('/products', productsController.getProductsClient)
