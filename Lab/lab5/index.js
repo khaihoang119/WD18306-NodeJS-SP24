@@ -16,11 +16,16 @@ app.use(express.static('assets'));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 const shopRoutes = require('./routers/client');
 app.use(shopRoutes);
 
+const adminRouters = require('./routers/admin')
+app.use('/admin', adminRouters);
+
 const apiRoutes = require('./routers/api');
-app.use(apiRoutes);
+app.use('/api',apiRoutes);
+
 
 
 app.listen(port, () => {

@@ -93,13 +93,18 @@
 							</thead>
 
 							<tbody>
-								<% for (let product of prods){ %>
+								<% for (let product of products){ %>
 								<tr>
 									<th scope="row"><%= product.productId %></th>
 									<td><%= product.productName %></td>
 									<td><%= product.productImg %></td>
 									<td><%= product.productPrice %> vnđ</td>
-									<td><span class="badge badge-primary">Áo </span></td>
+									<td><span class="badge badge-primary"><%= product.categoryId %> </span></td>
+									<td>
+										<a href="/admin/edit-product/edit/<%=product.productId %>">Edit</a>
+										<a href="/admin/list-products/delete/<%=product.productId %>">Delete</a>
+					
+									</td>
 								</tr>
 								<% } %>
 								
