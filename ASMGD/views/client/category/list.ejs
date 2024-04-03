@@ -1,0 +1,32 @@
+<%- include('../layouts/header.ejs') %>
+
+<div class="container">
+    <h1 class="text-center">
+        Category List
+
+    </h1>
+    <div class="row">
+        <% categories.forEach(element => {
+        %>
+        <div class="col-sm-4">
+            <div class="card text-white bg-primary">
+                <div class="card-body">
+
+                        <h4 class="card-title">Category name: <%= element.name %></h4>
+                    <p class="card-text">Status: <% if (element.status) {%>
+                        Display
+                        <% }%>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <%  }); %>
+
+    </div>
+
+</div>
+
+
+
+<%- include('../layouts/footer.ejs') %>

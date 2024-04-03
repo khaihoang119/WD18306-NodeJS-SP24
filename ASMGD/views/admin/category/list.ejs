@@ -1,0 +1,48 @@
+<%- include('../layouts/header.ejs') %>
+
+<div class="container">
+    <h1 class="text-center">
+        Category List
+
+    </h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% categories.forEach(element => {
+                %>
+            <tr>
+                <td><%=element.category_id %></td>
+                <td><%=element.name %></td>
+                <td><% if (element.status) {%>
+                    Display
+                    <% }
+                    else{ %>
+                    Hidden
+                    <%
+                    }%>
+                </td>
+                <td>
+                    <a href="/admin/categories/edit/<%=element.category_id %>">Edit</a>
+                    <a href="/admin/categories/delete/<%=element.category_id %>">Delete</a>
+
+                </td>
+            </tr>
+
+            <%
+            }); %>
+
+        </tbody>
+    </table>
+
+</div>
+
+
+
+<%- include('../layouts/footer.ejs') %>
