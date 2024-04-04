@@ -4,6 +4,7 @@
 const express = require('express')
 
 const categoriesAPIController = require('../controllers/api/categories');
+const userAPIController = require('../controllers/api/user');
 const router = express.Router();
 
 
@@ -25,5 +26,9 @@ router.put('/categories/:category_id', categoriesAPIController.update);
 router.delete('/categories/:category_id', categoriesAPIController.delete);
 
 
+//Router User
+router.post('/users/', userAPIController.create);
+
+router.post('/users/login', userAPIController.login);
 
 module.exports = router;
