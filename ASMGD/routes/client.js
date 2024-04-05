@@ -22,5 +22,5 @@ router.get('/categories', categoriesController.list);
 //User
 router.get('/users',usersController.list)
 router.get('/users/register', usersController.create)
-
-module.exports = router;
+router.post('/users/register', usersController.store)
+module.exports = router

@@ -4,7 +4,7 @@ const User = require("../../models/user");
 
 exports.list = async (req, res, next) => {
 
-    var user = await User.login();
+    var user = await User.getAll();
     console.log(user);
 
     res.status(200).json({

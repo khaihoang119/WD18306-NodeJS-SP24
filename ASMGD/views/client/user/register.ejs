@@ -7,24 +7,24 @@
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="client/images/icons/favicon.ico"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="client/user/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../client/user/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="client/user/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../client/user/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="client/user/fonts/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="../client/user/fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="client/user/vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="../client/user/vendor/animate/animate.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="client/user/vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="../client/user/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="client/user/vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="../client/user/vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="client/user/vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="../client/user/vendor/select2/select2.min.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="client/user/vendor/daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="../client/user/vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="client/user/css/util.css">
-	<link rel="stylesheet" type="text/css" href="client/user/css/main.css">
+	<link rel="stylesheet" type="text/css" href="../client/user/css/util.css">
+	<link rel="stylesheet" type="text/css" href="../client/user/css/main.css">
 <!--===============================================================================================-->
 </head>
 <body>
@@ -32,7 +32,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form" action="/api/users/create" method="post">
+				<form class="login100-form validate-form" action="/client/users/register" method="post">
 					<span class="login100-form-title p-b-26">
 						Đăng kí tài khoản
 					</span>
@@ -56,13 +56,13 @@
 					</div>
 
 					<div class="wrap-input100 validate-input">
-						<input class="input100" type="text" name="role">
-						<span class="focus-input100" data-placeholder="Role"></span>
+
+						
 						<div class="form-group">
-						  <select class="form-control" name="" id="">
-							<option></option>
-							<option></option>
-							<option></option>
+							<label for="">Role</label>
+						  <select class="form-control" name="role" id="" >
+							<option value="0">admin</option>
+							<option value="1">user</option>
 						  </select>
 						</div>
 					</div>
@@ -83,17 +83,17 @@
 							</button>
 						</div>
 					</div>
-
+				</form>
 					<div class="text-center p-t-115">
 						<span class="txt1">
-							Don’t have an account?
+							Đã có tài khoản
 						</span>
 
-						<a class="txt2" href="#">
-							Sign Up
+						<a class="txt2" href="/users">
+							Đăng nhập
 						</a>
 					</div>
-				</form>
+				
 			</div>
 		</div>
 	</div>
@@ -102,21 +102,21 @@
 	<div id="dropDownSelect1"></div>
 	
 <!--===============================================================================================-->
-	<script src="client/user/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="../client/user/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="client/user/vendor/animsition/js/animsition.min.js"></script>
+	<script src="../client/user/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-	<script src="client/user/vendor/bootstrap/js/popper.js"></script>
-	<script src="client/user/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../client/user/vendor/bootstrap/js/popper.js"></script>
+	<script src="../client/user/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="client/user/vendor/select2/select2.min.js"></script>
+	<script src="../client/user/vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
-	<script src="client/user/vendor/daterangepicker/moment.min.js"></script>
-	<script src="client/user/vendor/daterangepicker/daterangepicker.js"></script>
+	<script src="../client/user/vendor/daterangepicker/moment.min.js"></script>
+	<script src="../client/user/vendor/daterangepicker/daterangepicker.js"></script>
 <!--===============================================================================================-->
-	<script src="client/user/vendor/countdowntime/countdowntime.js"></script>
+	<script src="../client/user/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-	<script src="client/user/js/main.js"></script>
+	<script src="../client/user/js/main.js"></script>
 
 </body>
 </html>
