@@ -18,7 +18,9 @@ router.get('/', homeController.home);
 
 // GET /categories (hiển thị danh sách loại sản phẩm) 
 router.get('/categories', categoriesController.list);
-router.get('/users',usersController.list)
 
+//User
+router.get('/users',usersController.list)
+router.get('/users/register', usersController.create)
 
 module.exports = router;

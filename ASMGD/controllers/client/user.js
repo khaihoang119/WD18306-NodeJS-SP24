@@ -4,3 +4,7 @@ exports.list = async (req, res, next) => {
     // gọi api 
     res.render('client/user/login');
 };
+exports.create = async (req, res, next) => {
+    // gọi api 
+    res.render('client/user/register');
+};
