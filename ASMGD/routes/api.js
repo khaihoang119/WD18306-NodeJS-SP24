@@ -27,8 +27,11 @@ router.delete('/categories/:category_id', categoriesAPIController.delete);
 
 
 //Router User
+
+router.get('/users/', userAPIController.list);
+
 router.post('/users/', userAPIController.create);
-router.post('/users/', userAPIController.list);
-router.post('/users/', userAPIController.login);
+
+router.post('/users/login', userAPIController.login);
 
 module.exports = router;

@@ -4,6 +4,7 @@ exports.list = async (req, res, next) => {
     // gọi api 
     res.render('client/user/login');
 };
+
 exports.create = async (req, res, next) => {
     // gọi api 
     res.render('client/user/register');
@@ -15,15 +16,15 @@ exports.store = async (req, res, next) => {
     let fullname = req.body.fullname;
     let email = req.body.email;
     let role = req.body.role;
-    
+   
     let user = {
-        userName : username,
-        userPassword : password,
-        userFullName : fullname,
-        userRole : role,
-        userEmail : email,
+        username : username,
+        password : password,
+        fullname : fullname,
+        email : email,
+        role : role,
     }
-    fetch( API_URL+ 'api/user/', {
+    fetch( API_URL+ 'api/users/', {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, *cors, same-origin
             cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -40,7 +41,7 @@ exports.store = async (req, res, next) => {
         .then(data => {
             // res.send(data)
             if (data.result.affectedRows) {
-                res.redirect('/client/user/')
+                res.redirect('/admin')
 
             } else {
                 res.send('Lỗi không thể thêm')
@@ -50,3 +51,4 @@ exports.store = async (req, res, next) => {
         .catch(error => console.error('Error:', error));
 
 };
+

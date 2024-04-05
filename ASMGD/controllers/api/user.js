@@ -4,11 +4,11 @@ const User = require("../../models/user");
 
 exports.list = async (req, res, next) => {
 
-    var user = await User.getAll();
-    console.log(user);
+    var users = await User.getAll();
+    console.log(users);
 
     res.status(200).json({
-        data: user
+        data: users
     })
 };
 
