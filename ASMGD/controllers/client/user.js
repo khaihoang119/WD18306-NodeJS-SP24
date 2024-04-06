@@ -1,8 +1,15 @@
 const API_URL = 'http:/localhost:3000/'
 
 exports.list = async (req, res, next) => {
-    // gọi api 
-    res.render('client/user/login');
+    fetch(API_URL + `api/users/`)
+        .then(response => response.json())
+        .then(data => {
+            res.render('client/user/login', {
+                user: data.data
+            })
+        })
+        .catch(error => console.error('Error:', error));
+
 };
 
 exports.create = async (req, res, next) => {
@@ -16,27 +23,27 @@ exports.store = async (req, res, next) => {
     let fullname = req.body.fullname;
     let email = req.body.email;
     let role = req.body.role;
-   
+
     let user = {
-        username : username,
-        password : password,
-        fullname : fullname,
-        email : email,
-        role : role,
+        username: username,
+        password: password,
+        fullname: fullname,
+        email: email,
+        role: role,
     }
-    fetch( API_URL+ 'api/users/', {
-            method: "POST", // *GET, POST, PUT, DELETE, etc.
-            mode: "cors", // no-cors, *cors, same-origin
-            cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: "same-origin", // include, *same-origin, omit
-            headers: {
-                "Content-Type": "application/json",
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            redirect: "follow", // manual, *follow, error
-            referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            body: JSON.stringify(user), // body data type must match "Content-Type" header
-        })
+    fetch(API_URL + 'api/users/', {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+            "Content-Type": "application/json",
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: "follow", // manual, *follow, error
+        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify(user), // body data type must match "Content-Type" header
+    })
         .then(response => response.json())
         .then(data => {
             // res.send(data)
@@ -46,9 +53,26 @@ exports.store = async (req, res, next) => {
             } else {
                 res.send('Lỗi không thể thêm')
             }
-            
+
         })
         .catch(error => console.error('Error:', error));
 
 };
 
+exports.login = async (req, res, next) => {
+    let  username = req.body.username;
+    let user = {
+        username: username
+    }
+    fetch(API_URL + `api/users/`)
+        .then(response => response.json())
+        .then(data => {
+            // res.render('client/index', {
+            //     username: data.data[0],
+            //     path: '/',
+            //     activeCategories: true
+            // })
+            res.send(data.data[0])
+        })
+        .catch(error => console.error('Error:', error));
+};
