@@ -53,12 +53,29 @@ exports.login = async (req, res, next) =>{
 
         let match = bcrypt.compare(password, hashPasswordDB)
         if(match){
-            res.status(201).json({
+            res.redirect(201).json('/',{
                 status:1,
                 data: result,
-            })
+            });
+            // res.status(201).json({
+            //     status:1,
+            //     data: result,
+            // })
+           
         }
     }else{
         console.log('sai');
     }
+    
+    // req.session.username = result;
+    
 };
+
+// exports.getDashboard = (req, res) => {
+//     if (!req.session.user) {
+//         res.redirect('/login');
+//         return;
+//     }
+    
+//     res.render('dashboard', { user: req.session.user });
+// };

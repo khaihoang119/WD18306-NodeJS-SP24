@@ -61,12 +61,12 @@ exports.store = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
     let  username = req.body.username;
-    let user = {
-        username: username
-    }
-    fetch(API_URL + `api/users/`)
+    
+    
+    fetch(API_URL + `api/users/${username}`)
         .then(response => response.json())
         .then(data => {
+            
             // res.render('client/index', {
             //     username: data.data[0],
             //     path: '/',
