@@ -53,14 +53,13 @@ exports.login = async (req, res, next) =>{
 
         let match = bcrypt.compare(password, hashPasswordDB)
         if(match){
-            res.redirect(201).json('/',{
-                status:1,
-                data: result,
-            });
-            // res.status(201).json({
+            // res.render('client/index',{
             //     status:1,
             //     data: result,
-            // })
+            // });
+            
+            res.locals.username = username;
+            res.redirect('/');
            
         }
     }else{
