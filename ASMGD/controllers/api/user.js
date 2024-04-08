@@ -44,7 +44,11 @@ exports.login = async (req, res, next) =>{
     let username = req.body.username;
     let password = req.body.password;
 
-    let result = await User.login(username);
+    let user = {
+        username: username,
+        password: password
+    }
+    let result = await User.login(user);
 
     if(result){
         console.log(result);
@@ -53,13 +57,13 @@ exports.login = async (req, res, next) =>{
 
         let match = bcrypt.compare(password, hashPasswordDB)
         if(match){
-            // res.render('client/index',{
-            //     status:1,
-            //     data: result,
-            // });
+            res.render('client/index',{
+                status:1,
+                data: result,
+            });
             
-            res.locals.username = username;
-            res.redirect('/');
+            
+            // res.redirect('/');
            
         }
     }else{

@@ -61,10 +61,12 @@ exports.store = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
     let  username = req.body.username;
+    let password = req.body.password;
      let user ={
-        username : username
+        username : username,
+        password : password
      }
-    fetch(API_URL + `api/users/${username}`,{
+    fetch(API_URL + `api/users/`,{
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors, *cors, same-origin
         cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -80,11 +82,12 @@ exports.login = async (req, res, next) => {
         .then(response => response.json())
         .then(data => {
             
-            // res.render('client/index', {
-            //     username: data.data,
+            res.render('client/index', {
+                username: data.data,
                 
-            // })
-            res.send(data.data[0])
+            })
+            // res.send(data.data[0])
         })
         .catch(error => console.error('Error:', error));
+        console.log(user);
 };

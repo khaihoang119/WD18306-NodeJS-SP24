@@ -32,6 +32,6 @@ router.get('/users/', userAPIController.list);
 
 router.post('/users/', userAPIController.create);
 
-router.post('/users/login', userAPIController.login);
+router.post('/users/login/:username', userAPIController.login);
 
 module.exports = router;
