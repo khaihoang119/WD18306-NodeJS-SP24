@@ -3,6 +3,7 @@ const express = require('express')
 
 const categoriesController = require('../controllers/admin/categories');
 const homeController = require('../controllers/admin/home');
+const productsController = require('../controllers/admin/products');
 const router = express.Router();
 
 // *** Home
@@ -36,6 +37,8 @@ router.get('/categories/delete/:category_id', categoriesController.delete);
 
 // *** End Categories
 
+//products
+router.get('/products', productsController.list);
 
 
 

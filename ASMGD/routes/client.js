@@ -4,6 +4,7 @@ const express = require('express')
 const categoriesController = require('../controllers/client/categories');
 const homeController = require('../controllers/client/home');
 const usersController = require('../controllers/client/user');
+const productsController = require('../controllers/client/products');
 const router = express.Router();
 
 // *** Home
@@ -28,4 +29,9 @@ router.post('/user/register', usersController.store)
 
 // router.post('/user/login/:username', usersController.login);
 router.post('/user/login/', usersController.login);
+
+
+//Products
+router.get('/products', productsController.list);
+
 module.exports = router
