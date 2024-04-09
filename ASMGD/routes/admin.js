@@ -40,6 +40,6 @@ router.get('/categories/delete/:category_id', categoriesController.delete);
 //products
 router.get('/products', productsController.list);
 
-
-
+router.get('/products/create', productsController.create);
+router.post('/products/create', productsController.store);
 module.exports = router;

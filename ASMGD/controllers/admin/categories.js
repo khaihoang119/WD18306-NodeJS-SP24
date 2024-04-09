@@ -33,12 +33,10 @@ exports.create = (req, res, next) => {
 // POST /admin/categories/create (thực hiện thêm) 
 exports.store = async (req, res, next) => {
     // gọi api 
-    let name = req.body.name;
-    let status = req.body.status;
+    let categoryName = req.body.categoryName;
 
     let category = {
-        name: name,
-        status: status,
+        categoryName: categoryName,
     }
     fetch( API_URL+ 'api/categories/', {
             method: "POST", // *GET, POST, PUT, DELETE, etc.

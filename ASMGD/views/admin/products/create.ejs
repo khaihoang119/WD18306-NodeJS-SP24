@@ -47,7 +47,7 @@
 						<div class="row">
 							<div class="col-md-6 col-sm-12">
 								<div class="title">
-									<h4>Thêm danh mục</h4>
+									<h4>Thêm sản phẩm mới</h4>
 								</div>
 							</div>
 							
@@ -57,16 +57,43 @@
 					<div class="pd-20 card-box mb-30">
 						<div class="clearfix">
 							<div class="pull-left">
-								<h4 class="text-blue h4">Thêm danh mục mới</h4>
+								<h4 class="text-blue h4">Thêm sản phẩm mới</h4>
 							</div>
 
 						</div>
-						<form action="/admin/categories/create" method="post">
+						<form action="/admin/products/create" method="post">
 							<div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label">Tên danh mục</label>
+								<label class="col-sm-12 col-md-2 col-form-label">Tên sản phẩm</label>
 								<div class="col-sm-12 col-md-10">
-									<input class="form-control" type="text" placeholder="Tên danh mục"
-										name="categoryName">
+									<input class="form-control" type="text" placeholder="Tên sản phẩm"
+										name="productName">
+								</div>	
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">hình ảnh sản phẩm</label>
+								<div class="col-sm-12 col-md-10">
+									<input class="form-control" type="text" placeholder="hình ảnh sản phẩm"
+										name="productImg">
+								</div>	
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Giá sản phẩm</label>
+								<div class="col-sm-12 col-md-10">
+									<input class="form-control" type="number" placeholder="giá sản phẩm"
+										name="productPrice">
+								</div>	
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Danh mục sản phẩm</label>
+								<div class="col-sm-12 col-md-10">
+									<input class="form-control" type="number" placeholder="id danh mục"
+										name="categoryId">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Chi tiết sản phẩm</label>
+								<div class="col-sm-12 col-md-10">
+									<textarea name="productDes" id="" cols="30" rows="10" class="form-control"></textarea>
 								</div>
 							</div>
 							<div class="form-group">

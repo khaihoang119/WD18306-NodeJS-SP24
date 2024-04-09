@@ -15,7 +15,7 @@ exports.list = async (req, res, next) => {
 
 // GET /admin/categories/create (hiển thị form thêm) 
 exports.create = (req, res, next) => {
-    res.render('admin/add-product');
+    res.render('admin/products/create');
 };
 
 // POST /admin/categories/create (thực hiện thêm) 
@@ -51,13 +51,11 @@ exports.store = async (req, res, next) => {
         .then(data => {
             // res.send(data)
             if (data.result.affectedRows) {
-                res.redirect('/admin/add-product')
+                res.redirect('/admin/products/')
 
             } else {
                 res.send('Lỗi không thể thêm')
             }
-            // hiển thị ra giao diện
-            // res.redirect('/admin/categories/')
         })
         .catch(error => console.error('Error:', error));
 

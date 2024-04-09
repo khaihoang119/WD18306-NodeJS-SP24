@@ -14,14 +14,10 @@ exports.list = async (req, res, next) => {
 };
 
 exports.create = async (req, res, next) => {
-    // const file = req.file
-
-    let name = req.body.name;
-    let status = req.body.status;
+    let categoryName = req.body.categoryName;
 
     let category = {
-        name: name,
-        status: status,
+        categoryName: categoryName,
     }
     let result = await Category.create(category);
 
