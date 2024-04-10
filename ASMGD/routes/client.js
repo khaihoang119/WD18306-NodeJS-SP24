@@ -11,7 +11,6 @@ const router = express.Router();
 
 // GET / (hiển thị trang chủ client)
 router.get('/', homeController.home);
-
 // *** End Home
 
 
