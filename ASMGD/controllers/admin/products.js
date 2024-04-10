@@ -92,7 +92,7 @@ exports.edit = (req, res, next) => {
         .then(data => {
             // res.send(data)
             // hiển thị ra giao diện
-            res.render('admin/edit-product', {
+            res.render('admin/products/edit', {
                 products: data.data[0]
             })
         })
@@ -130,7 +130,7 @@ exports.update = async (req, res, next) => {
         .then(data => {
             // res.send(data)
             if (data.result.affectedRows) {
-                res.redirect('/admin/list-products')
+                res.redirect('/admin/products/')
 
             } else {
                 res.send('Lỗi không thể cập nhật')

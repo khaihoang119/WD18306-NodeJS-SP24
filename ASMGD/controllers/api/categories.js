@@ -34,9 +34,9 @@ exports.create = async (req, res, next) => {
 exports.detail = async (req, res, next) => {
     // const file = req.file
 
-    let category_id = req.params.category_id;
+    let categoryId = req.params.categoryId;
 
-    let result = await Category.getById(category_id);
+    let result = await Category.getById(categoryId);
 
     console.log(result);
     // res.send(result);
@@ -46,15 +46,13 @@ exports.detail = async (req, res, next) => {
     })
 };
 exports.update = async (req, res, next) => {
-    let category_id = req.params.category_id;
-    let name = req.body.name;
-    let status = req.body.status;
+    let categoryId = req.params.categoryId;
+    let categoryName = req.body.categoryName;
 
     let category = {
-        name: name,
-        status: status,
+        categoryName: categoryName,
     }
-    let result = await Category.update(category, category_id);
+    let result = await Category.update(category, categoryId);
 
     console.log(result);
     // res.send(result);
@@ -64,9 +62,9 @@ exports.update = async (req, res, next) => {
     })
 };
 exports.delete = async (req, res, next) => {
-    let category_id = req.params.category_id;
+    let categoryId = req.params.categoryId;
 
-    let result = await Category.delete(category_id);
+    let result = await Category.delete(categoryId);
 
     console.log(result);
     // res.send(result);

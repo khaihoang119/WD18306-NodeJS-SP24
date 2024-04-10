@@ -1,12 +1,3 @@
-// controllers/admin/categories.js
-
-
-// ****API
-// GET /api/categories (lấy danh sách loại sản phẩm)
-// POST /api/categories (tạo mới một loại sản phẩm)
-// GET /api/categories/:category_id (lấy chi tiết loại sản phẩm với category_id cụ thể)
-// PUT /api/categories/:category_id (update loại sản phẩm với category_id cụ thể)
-// DELETE /api/categories/:category_id (delete loại sản phẩm với category_id cụ thể)
 
 const API_URL = 'http:/localhost:3000/';
 // GET /admin/categories (hiển thị danh sách loại sản phẩm) 
@@ -70,8 +61,8 @@ exports.store = async (req, res, next) => {
 // GET /admin/categories/edit/:category_id (hiển thị form chỉnh sửa)
 exports.edit = (req, res, next) => {
     // gọi api 
-    let category_id = req.params.category_id;
-    fetch( API_URL+ `api/categories/${category_id}`)
+    let categoryId = req.params.categoryId;
+    fetch( API_URL+ `api/categories/${categoryId}`)
         .then(response => response.json())
         .then(data => {
             // res.send(data)
@@ -87,18 +78,16 @@ exports.edit = (req, res, next) => {
 // POST /admin/categories/update/:category_id (thực hiện cập nhật)
 exports.update = async (req, res, next) => {
     // gọi api 
-    let category_id = req.params.category_id;
+    let categoryId = req.params.categoryId; 
 
-    let name = req.body.name;
-    let status = req.body.status;
+    let categoryName = req.body.categoryName;
 
     let category = {
-        name: name,
-        status: status,
+        categoryName: categoryName,
     }
 
     // res.send(req.body)
-    fetch( API_URL+ `api/categories/${category_id}`, {
+    fetch( API_URL+ `api/categories/${categoryId}`, {
             method: "PUT", // *GET, POST, PUT, DELETE, etc.
             headers: {
                 "Content-Type": "application/json",
@@ -125,8 +114,8 @@ exports.update = async (req, res, next) => {
 // GET /admin/categories/delete/:category_id (thực hiện xoá) 
 exports.delete = (req, res, next) => {
     // gọi api 
-    let category_id = req.params.category_id;
-    fetch( API_URL + `api/categories/${category_id}`, {
+    let categoryId = req.params.categoryId;
+    fetch( API_URL + `api/categories/${categoryId}`, {
         method: "DELETE", // *GET, POST, PUT, DELETE, etc.
     })
     .then(response => response.json())
@@ -138,8 +127,6 @@ exports.delete = (req, res, next) => {
         } else {
             res.send('Lỗi không thể xoá')
         }
-        // hiển thị ra giao diện
-        // res.redirect('/admin/categories/')
     })
     .catch(error => console.error('Error:', error));
 

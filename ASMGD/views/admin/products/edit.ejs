@@ -47,7 +47,7 @@
 						<div class="row">
 							<div class="col-md-6 col-sm-12">
 								<div class="title">
-									<h4>Sửa danh mục</h4>
+									<h4>Sửa sản phẩm</h4>
 								</div>
 
 							</div>
@@ -58,18 +58,47 @@
 					<div class="pd-20 card-box mb-30">
 						<div class="clearfix">
 							<div class="pull-left">
-								<h4 class="text-blue h4">Sửa danh mục</h4>
+								<h4 class="text-blue h4">Sửa sản phẩm</h4>
 							</div>
 
 						</div>
-						<form action="/admin/categories/update/<%= category.categoryId %>" method="post">
-							<label class="col-sm-12 col-md-2 col-form-label">Tên danh mục</label>
-								<div class="col-sm-12 col-md-10 p-3">
-									<input class="form-control" type="text" placeholder="Tên danh mục"  value="<%= category.categoryName %>"
-										name="categoryName">
-								</div>
-							
+						<form action="/admin/products/update/<%= products.productId %>" method="post">
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Tên sản phẩm</label>
 								<div class="col-sm-12 col-md-10">
+									<input class="form-control" type="text" placeholder="Sản phẩm 1"
+										name="productName" value="<%= products.productName %>">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Giá sản phẩm</label>
+								<div class="col-sm-12 col-md-10">
+									<input class="form-control" type="number" placeholder="vnđ" name="productPrice"  value="<%= products.productPrice %>">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">ảnh sản phẩm</label>
+								<div class="col-sm-12 col-md-10">
+									<input class="form-control" value="<%= products.productImg %>" type="text" placeholder="product-1.jpg"
+										name="productImg">
+								</div>
+							</div>
+							<div class="form-group">
+								<label>Chi tiết sản phẩm</label>
+								<textarea class="form-control" value="<%= products.productDes %>" name="productDes" ></textarea>
+							</div>
+							<div class="form-group">	
+								<div class="mb-3">
+									<label for="" class="form-label">Danh mục sản phẩm</label>
+									<select class="form-select form-select-lg" name="categoryId" id="">
+										<option value="1" >Áo</option>
+										<option value="2">Quần</option>
+										<option value="3">Phụ kiện</option>
+									</select>
+								</div>
+
+							</div>
+							<div class="form-group">
 								<button type="submit" class="btn btn-primary">Sửa</button>
 							</div>
 						</form>

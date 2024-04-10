@@ -47,7 +47,7 @@
 						<div class="row">
 							<div class="col-md-6 col-sm-12">
 								<div class="title">
-									<h4>Danh sách sản phẩm </h4>
+									<h4>Danh sách tài khoản </h4>
 								</div>
 								<nav aria-label="breadcrumb" role="navigation">
 									<ol class="breadcrumb">
@@ -65,7 +65,7 @@
 						<div class="clearfix mb-20">
 							<div class="pull-left">
 								<h4 class="text-blue h4"></h4>
-								<p><code>Tất cả sản phẩm</code></p>
+								<p><code>Tất cả tài khoản</code></p>
 							</div>
 
 						</div>
@@ -73,26 +73,23 @@
 							<thead>
 								<tr>
 									<th scope="col">#</th>
-									<th scope="col">Tên sản phẩm</th>
-									<th scope="col">Tên hình ảnh</th>
-									<th scope="col">Giá sản phẩm</th>
-									<th scope="col">Danh mục sản phẩm</th>
-									<th scope="col">Quản lý</th>
+									<th scope="col">Tên người dùng</th>
+									<th scope="col">Quyền</th>
+									<th scope="col">Họ và tên người dùng</th>
+									<th scope="col">Email</th>
+									
 								</tr>
 							</thead>
 
 							<tbody>
-								<% for (let product of products){ %>
+								<% for (let user of users){ %>
 								<tr>
-									<th scope="row"><%= product.productId %></th>
-									<td><%= product.productName %></td>
-									<td><%= product.productImg %></td>
-									<td><%= product.productPrice %> vnđ</td>
-									<td><span class="badge badge-primary"><%= product.categoryId %> </span></td>
-									<td>
-										<a href="/admin/products/edit/<%=product.productId %>">Edit</a>
-										<a href="/admin/products/delete/<%=product.productId %>">Delete</a>
-									</td>
+									<th scope="row"><%= user.userId %></th>
+									<td><%= user.userName %></td>
+									<td><%= user.userRole %></td>
+									<td><%= user.userFullName %> </td>
+									<td><%= user.userEmail %> </td>
+									
 								</tr>
 								<% } %>
 								

@@ -17,14 +17,14 @@ router.get('/categories/', categoriesAPIController.list);
 router.post('/categories/', categoriesAPIController.create);
 
 // GET /api/categories/:category_id (lấy chi tiết loại sản phẩm với category_id cụ thể)
-router.get('/categories/:category_id', categoriesAPIController.detail);
+router.get('/categories/:categoryId', categoriesAPIController.detail);
 
 // PUT /api/categories/:category_id (update loại sản phẩm với category_id cụ thể)
-router.put('/categories/:category_id', categoriesAPIController.update);
+router.put('/categories/:categoryId', categoriesAPIController.update);
 // router.patch('/categories/:category_id', categoriesAPIController.update);
 
 // DELETE /api/categories/:category_id (delete loại sản phẩm với category_id cụ thể)
-router.delete('/categories/:category_id', categoriesAPIController.delete);
+router.delete('/categories/:categoryId', categoriesAPIController.delete);
 
 
 //Router User
@@ -43,7 +43,6 @@ router.get('/products/', productsAPIController.list)
 router.post('/products/', productsAPIController.create);
 
 router.get('/products/:productId', productsAPIController.detail);
-
 
 router.put('/products/:productId', productsAPIController.update);
 

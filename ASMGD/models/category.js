@@ -16,9 +16,9 @@ module.exports = class Category {
         });
     }
     // lấy ra 1 loại theo id
-    static async getById(category_id) {
+    static async getById(categoryId) {
         return new Promise((resolve, reject) => {
-            let sql = `SELECT * FROM categories WHERE categoryId=${category_id}`;
+            let sql = `SELECT * FROM categories WHERE categoryId=${categoryId}`;
             db.query(sql, function (err, data) {
                 if (err) {
                     reject(err);
@@ -41,9 +41,9 @@ module.exports = class Category {
         });
     }
     // cập nhật
-    static async update(category, category_id) {
+    static async update(category, categoryId) {
         return new Promise((resolve, reject) => {
-            db.query('UPDATE categories SET ? WHERE categoryId=?', [category, category_id], function (err, data) {
+            db.query('UPDATE categories SET ? WHERE categoryId=?', [category, categoryId], function (err, data) {
                 if (err) {
                     reject(err);
                 } else {
@@ -53,9 +53,9 @@ module.exports = class Category {
         });
     }
     // xoá
-    static async delete(category_id) {
+    static async delete(categoryId) {
         return new Promise((resolve, reject) => {
-            let sql = `DELETE FROM categories WHERE categoryId= ${category_id}`;
+            let sql = `DELETE FROM categories WHERE categoryId= ${categoryId}`;
             db.query(sql, function (err, data) {
                 if (err) {
                     reject(err);
