@@ -42,4 +42,5 @@ router.get('/products', productsController.list);
 
 router.get('/products/create', productsController.create);
 router.post('/products/create', productsController.store);
+router.get('/products/delete/:productId', productsController.delete);
 module.exports = router;

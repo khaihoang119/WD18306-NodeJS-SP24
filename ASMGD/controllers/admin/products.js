@@ -72,7 +72,7 @@ exports.delete = (req, res, next) => {
     .then(data => {
         // res.send(data)
         if (data.result.affectedRows) {
-            res.redirect('/admin/list-products')
+            res.redirect('/admin/products/')
 
         } else {
             res.send('Lỗi không thể xoá')

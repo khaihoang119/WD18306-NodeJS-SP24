@@ -57,19 +57,7 @@
 									</ol>
 								</nav>
 							</div>
-							<div class="col-md-6 col-sm-12 text-right">
-								<div class="dropdown">
-									<a class="btn btn-primary dropdown-toggle" href="#" role="button"
-										data-toggle="dropdown">
-										Tháng 3
-									</a>
-									<div class="dropdown-menu dropdown-menu-right">
-										<a class="dropdown-item" href="#">Export List</a>
-										<a class="dropdown-item" href="#">Policies</a>
-										<a class="dropdown-item" href="#">View Assets</a>
-									</div>
-								</div>
-							</div>
+							
 						</div>
 					</div>
 					<!-- basic table  Start -->
@@ -89,6 +77,7 @@
 									<th scope="col">Tên hình ảnh</th>
 									<th scope="col">Giá sản phẩm</th>
 									<th scope="col">Danh mục sản phẩm</th>
+									<th scope="col">Quản lý</th>
 								</tr>
 							</thead>
 
@@ -102,8 +91,7 @@
 									<td><span class="badge badge-primary"><%= product.categoryId %> </span></td>
 									<td>
 										<a href="/admin/edit-product/edit/<%=product.productId %>">Edit</a>
-										<a href="/admin/list-products/delete/<%=product.productId %>">Delete</a>
-					
+										<a href="/admin/products/delete/<%=product.productId %>">Delete</a>
 									</td>
 								</tr>
 								<% } %>
