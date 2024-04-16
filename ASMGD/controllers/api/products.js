@@ -11,7 +11,6 @@ exports.list = async (req, res, next) =>{
 
 exports.create = async (req, res, next) => {
     // const file = req.file
-
     let productName = req.body.productName;
     let productPrice = req.body.productPrice;
     let productDes = req.body.productDes;

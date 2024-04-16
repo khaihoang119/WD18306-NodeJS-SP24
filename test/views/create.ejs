@@ -1,0 +1,51 @@
+
+<%- include('./layouts/header.ejs') %>
+
+    <main>
+        <h3>Thêm sản phẩm mới</h3>
+        <form action="/create" method="post">
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Tên người mua</label>
+                <div class="col-sm-12 col-md-10">
+                    <input class="form-control" type="text" placeholder="Tên sản phẩm"
+                        name="ten_nguoi_mua">
+                </div>	
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Tên người bán</label>
+                <div class="col-sm-12 col-md-10">
+                    <input class="form-control" type="text" placeholder="Tên sản phẩm"
+                        name="ten_nguoi_ban">
+                </div>	
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Giá tiền</label>
+                <div class="col-sm-12 col-md-10">
+                    <input class="form-control" type="number" placeholder="vnđ"
+                        name="gia_tien">
+                </div>	
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Ngày ký</label>
+                <div class="col-sm-12 col-md-10">
+                    <input class="form-control" type="date" placeholder="Tên sản phẩm"
+                        name="ngay_ky">
+                </div>	
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Trạng thái</label>
+                <div class="col-sm-12 col-md-10">
+                    <select name="trang_thai" id="">
+                        <option value="1">Tạo mới</option>
+                        <option value="2">Đang triển khai</option>
+                        <option value="3">Đã hủy</option>
+                    </select>
+                </div>	
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Thêm Mới</button>
+            </div>
+        </form>
+    </main>
+
+    <%- include('./layouts/footer.ejs') %>

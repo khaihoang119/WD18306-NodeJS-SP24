@@ -1,0 +1,44 @@
+
+
+<%- include('./layouts/header.ejs') %>
+    
+    <main>
+        <h1>Danh sách</h1>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tên người mua</th>
+                <th scope="col">Tên người bán</th>
+                <th scope="col">Giá tiền</th>
+                <th scope="col">Ngày kí</th>
+                <th scope="col">Trạng thái</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% for(let list of hopdong){ %>
+              <tr>
+                <th scope="row"><%= list.Id %></th>
+                <td><%= list.ten_nguoi_mua %></td>
+                <td><%= list.ten_nguoi_ban %></td>
+                <td><%= list.gia_tien %></td>
+                <td><%= list.ngay_ky %></td>
+                <td>
+                    <select class="form-select" id="<%= list.trang_thai %>" disabled>
+                        <option value="1">Tạo mới</option>
+                        <option value="2">Đang triển khai</option>
+                        <option value="3">Đã hủy</option>
+                    </select>
+                </td>
+                <p id="selectedValue"></p>
+              </tr>
+              <% } %>
+            </tbody>
+            
+            
+          </table>
+
+        
+    </main>
+    <%- include('./layouts/footer.ejs') %>
+ 
