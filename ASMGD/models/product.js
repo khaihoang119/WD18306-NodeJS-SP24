@@ -55,7 +55,7 @@ module.exports = class Product{
     
     static async delete(productId) {
         return new Promise((resolve, reject) => {
-            let sql = `DELETE FROM products WHERE productId=${productId}`;
+            let sql = `DELETE FROM products WHERE productId= ${productId}`;
             db.query(sql, function (err, data) {
                 if (err) {
                     reject(err);

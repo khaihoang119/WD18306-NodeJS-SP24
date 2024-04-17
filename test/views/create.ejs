@@ -3,12 +3,13 @@
 
     <main>
         <h3>Thêm sản phẩm mới</h3>
-        <form action="/create" method="post">
+       <form action="/create" method="post" id="myForm">
             <div class="form-group row">
                 <label class="col-sm-12 col-md-2 col-form-label">Tên người mua</label>
                 <div class="col-sm-12 col-md-10">
                     <input class="form-control" type="text" placeholder="Tên sản phẩm"
                         name="ten_nguoi_mua">
+                        <div class="error-msg" id="error-ten-nguoi-mua"></div>
                 </div>	
             </div>
             <div class="form-group row">
@@ -45,7 +46,49 @@
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Thêm Mới</button>
             </div>
-        </form>
+        </form> 
     </main>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
 
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Ngăn chặn việc gửi form đi mặc định
+
+        const tenNguoiMua = form.querySelector('input[name="ten_nguoi_mua"]').value.trim();
+        const tenNguoiBan = form.querySelector('input[name="ten_nguoi_ban"]').value.trim();
+        const giaTien = form.querySelector('input[name="gia_tien"]').value.trim();
+        const ngayKy = form.querySelector('input[name="ngay_ky"]').value.trim();
+        const trangThai = form.querySelector('select[name="trang_thai"]').value;
+
+        // Kiểm tra các trường nhập liệu
+        if (tenNguoiMua === '' || tenNguoiBan === '' || giaTien === '' || ngayKy === '') {
+            alert('Vui lòng nhập đầy đủ thông tin.');
+            return; // Ngăn chặn việc gửi form nếu có lỗi
+        }
+
+        // Nếu muốn kiểm tra thêm điều kiện khác, bạn có thể thêm vào ở đây
+        
+        // Nếu không có lỗi, bạn có thể gửi form đi bằng AJAX hoặc submit form bằng cách giữ mặc định
+        // Ví dụ:  hoặc sử dụng AJAX để gửi dữ liệu
+        form.submit();
+        // Ví dụ sử dụng AJAX:
+        /*
+        fetch('/create', {
+            method: 'POST',
+            body: new FormData(form)
+        })
+        .then(response => {
+            // Xử lý phản hồi từ máy chủ
+        })
+        .catch(error => {
+            console.error('Lỗi:', error);
+        });
+        */
+    });
+});
+
+
+
+</script>
     <%- include('./layouts/footer.ejs') %>

@@ -13,6 +13,7 @@
                 <th scope="col">Giá tiền</th>
                 <th scope="col">Ngày kí</th>
                 <th scope="col">Trạng thái</th>
+                <th scope="col">Thêm và xóa</th>
               </tr>
             </thead>
             <tbody>
@@ -30,7 +31,10 @@
                         <option value="3">Đã hủy</option>
                     </select>
                 </td>
-                <p id="selectedValue"></p>
+                <td>
+                  <a href="/hopdong/edit/<%=list.Id %>">Edit</a>
+                  <a href="/hopdong/delete/<%=list.Id %>">Delete</a>
+                </td>
               </tr>
               <% } %>
             </tbody>
